@@ -5,8 +5,8 @@ const ProjectsPage = () => {
   const projects = [
     {
       id: 1,
-      title: "Portfolio Website",
-      description: "A modern, responsive portfolio website built with React",
+      title: "Med-Minute",
+      description: "A healthcare app that provides quick medical information and symptom checker",
       technologies: ["React", "CSS3", "JavaScript"],
       link: "#"
     },
