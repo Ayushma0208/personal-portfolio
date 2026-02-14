@@ -10,6 +10,7 @@
     "pdf-parse": "^2.4.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-github-calendar": "^5.0.5",
     "react-router-dom": "^7.13.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"

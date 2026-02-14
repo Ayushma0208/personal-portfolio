@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { GitHubCalendar } from 'react-github-calendar';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -69,6 +70,22 @@ const HomePage = () => {
         <p className="about-text">
           Every service I write is built with observability in mind — logs, metrics, alerts, and structured tracing included from day one.
         </p>
+      </section>
+
+      <section className="github-section">
+        <h2>GitHub Contributions</h2>
+        <div className="github-calendar-container">
+          <GitHubCalendar 
+            username="Ayushma0208"
+            colorScheme="dark"
+            blockSize={12}
+            blockMargin={5}
+            fontSize={14}
+            theme={{
+              dark: ['#1a1a2e', '#667eea20', '#667eea40', '#667eea80', '#667eea']
+            }}
+          />
+        </div>
       </section>
 
       <section className="skills-section">

@@ -223,6 +223,7 @@
 }
 
 .about-section,
+.github-section,
 .skills-section,
 .contact-section {
   padding: 4rem 2rem;
@@ -236,7 +237,23 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.github-section {
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.github-calendar-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
+}
+
 .about-section h2,
+.github-section h2,
 .skills-section h2,
 .contact-section h2 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
@@ -406,12 +423,19 @@
   }
   
   .about-section,
+  .github-section,
   .skills-section,
   .contact-section {
     padding: 3rem 1.5rem;
   }
   
+  .github-calendar-container {
+    padding: 1rem;
+    overflow-x: scroll;
+  }
+  
   .about-section h2,
+  .github-section h2,
   .skills-section h2,
   .contact-section h2 {
     margin-bottom: 1.5rem;
