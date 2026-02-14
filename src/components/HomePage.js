@@ -73,7 +73,37 @@ const HomePage = () => {
       </section>
 
       <section className="github-section">
-        <h2>GitHub Contributions</h2>
+        <h2>GitHub Stats & Activity</h2>
+        
+        <div className="github-stats-grid">
+          <div className="github-stat-card">
+            <img
+  src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Ayushma0208&layout=compact&theme=tokyonight"
+  alt="Top Languages"
+/>
+
+          </div>
+          
+          <div className="github-stat-card">
+            <img 
+              src="https://github-readme-streak-stats.herokuapp.com/?user=Ayushma0208&theme=tokyonight&hide_border=true&background=1a1a2e&ring=667eea&fire=764ba2&currStreakLabel=667eea" 
+              alt="GitHub Streak"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div className="github-stats-grid">
+          <div className="github-stat-card">
+           <img
+  src="https://github-readme-stats-sigma-five.vercel.app/api?username=Ayushma0208&show_icons=true&theme=tokyonight"
+  alt="GitHub Stats"
+/>
+
+          </div>
+        </div>
+
+        <h3 className="contribution-title">Contribution Calendar</h3>
         <div className="github-calendar-container">
           <GitHubCalendar 
             username="Ayushma0208"
