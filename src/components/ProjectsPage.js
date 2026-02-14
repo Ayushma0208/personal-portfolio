@@ -46,7 +46,7 @@ const ProjectsPage = () => {
     },
     {
       id: 3,
-      title: "Dirext — Real-Time Chat Application at Scale",
+      title: "Med-Minutes — Real-Time Healthcare Appointment System",
       description: "A distributed messaging platform inspired by Facebook Messenger and WhatsApp, designed to handle billions of users sending millions of messages daily. The system prioritizes real-time message delivery, cross-device synchronization, and efficient message routing with minimal client connections.",
       technologies: ["Node.js", "WebSocket", "Redis", "MongoDB", "Kafka"],
       link: "#",
