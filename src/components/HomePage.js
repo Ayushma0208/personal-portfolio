@@ -152,13 +152,10 @@ const HomePage = () => {
       </section>
 
       <section id="contact" className="contact-section">
-        <h2>Let's Connect</h2>
-        <p>Feel free to reach out for collaborations or just a friendly hello!</p>
-        <div className="social-links">
-          <a href="https://github.com/Ayushma0208" target="_blank" rel="noopener noreferrer" className="social-link">GitHub</a>
-          <a href="https://www.linkedin.com/in/ayusmatripathi/" target="_blank" rel="noopener noreferrer" className="social-link">LinkedIn</a>
-          <a href="mailto:ayushma@example.com" className="social-link">Email</a>
-        </div>
+        <h2>Contact</h2>
+        <p className="contact-email">
+          Email: <a href="mailto:ayushmatripathi2002@gmail.com">ayushmatripathi2002@gmail.com</a>
+        </p>
       </section>
 
       {showModal && (
