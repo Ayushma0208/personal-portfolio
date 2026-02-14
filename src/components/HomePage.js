@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 
 const HomePage = () => {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (date) => {
+    return date.toLocaleTimeString('en-US', { 
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  };
+
   return (
     <div className="home-container">
+      <div className="time-location">
+        {formatTime(currentTime)}(GMT+5:30) Indore, India
+      </div>
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="name">Ayushma</h1>
