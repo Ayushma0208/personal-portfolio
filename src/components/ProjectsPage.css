@@ -47,6 +47,114 @@
   overflow: hidden;
 }
 
+.project-card.expanded {
+  grid-column: 1 / -1;
+  max-width: 100%;
+}
+
+.project-details {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  border-left: 4px solid #667eea;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-section h4 {
+  font-size: 1.5rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.architecture-intro {
+  color: #c0c0c0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.detail-section ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 1rem;
+}
+
+.detail-section li {
+  color: #d0d0d0;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.detail-section li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.detail-label {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.detail-section p {
+  color: #c0c0c0;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.project-actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.read-more-btn {
+  padding: 0.8rem 2rem;
+  background: rgba(102, 126, 234, 0.2);
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  color: #667eea;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: none;
+}
+
+.read-more-btn:hover {
+  background: rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
 .project-card::before {
   content: '';
   position: absolute;
@@ -139,5 +247,25 @@
   
   .project-card {
     padding: 2rem;
+  }
+  
+  .project-details {
+    padding: 1.5rem;
+  }
+  
+  .detail-section h4 {
+    font-size: 1.3rem;
+  }
+  
+  .project-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .read-more-btn,
+  .project-link {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }
