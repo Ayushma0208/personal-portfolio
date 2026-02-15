@@ -56,7 +56,7 @@ const BlogPage = () => {
       title: "Production Deployment using Nginx and PM2",
       date: "November 22, 2025",
       excerpt: "Learn how to deploy Node.js applications in production using PM2 for process management and Nginx as a reverse proxy for reliability and scalability.",
-      content: "Building an application is only half the job. The real challenge begins when you want your app to run reliably in production — handling traffic, staying online, and recovering automatically if something breaks. This guide covers deploying applications with PM2 and Nginx to create a robust, production-ready system.",
+      content: "Building an application is only half the job. The real challenge begins when you want your app to run reliably in production handling traffic, staying online, and recovering automatically if something breaks. This guide covers deploying applications with PM2 and Nginx to create a robust, production ready system.",
       tags: ["Nginx", "PM2", "Deployment"],
       readTime: "11 min read"
     }
