@@ -32,10 +32,6 @@ const HomePage = () => {
         <div className="hero-content">
           <h1 className="name">Ayushma Tripathi</h1>
           <p className="tagline">Software Engineer — I build backend systems, real-time apps, and RESTful APIs.</p>
-          
-          <button className="schedule-meeting-btn" onClick={() => setShowModal(true)}>
-            Schedule Meeting
-          </button>
 
           <div className="social-icons">
             <a href="https://github.com/Ayushma0208" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
@@ -55,6 +51,9 @@ const HomePage = () => {
             </a>
           </div>
         </div>
+        <button className="schedule-meeting-btn" onClick={() => setShowModal(true)}>
+          Schedule Meeting
+        </button>
       </section>
 
       <section id="about" className="about-section">

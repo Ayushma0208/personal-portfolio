@@ -20,49 +20,48 @@
 }
 
 .hero-section {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  padding-top: 4rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 2rem 4rem 2rem 4rem;
   background: radial-gradient(circle at 50% 50%, rgba(94, 53, 177, 0.1) 0%, transparent 50%);
 }
 
 .hero-content {
-  text-align: center;
+  text-align: left;
   max-width: 800px;
 }
 
 .name {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  color: #ffffff;
   animation: fadeInUp 1s ease-out;
 }
 
 .tagline {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: #b0b0b0;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
 .schedule-meeting-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 14px 32px;
-  font-size: 1.1rem;
+  padding: 12px 28px;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom: 2rem;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  align-self: flex-start;
+  white-space: nowrap;
 }
 
 .schedule-meeting-btn:hover {
@@ -151,8 +150,8 @@
 .social-icons {
   display: flex;
   gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
+  justify-content: flex-start;
+  margin-top: 1.5rem;
   animation: fadeInUp 1s ease-out 0.4s both;
 }
 
@@ -226,8 +225,8 @@
 .github-section,
 .skills-section,
 .contact-section {
-  padding: 4rem 2rem;
-  max-width: 1200px;
+  padding: 4rem 4rem;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -310,8 +309,8 @@
   line-height: 1.9;
   color: #d0d0d0;
   text-align: left;
-  max-width: 1000px;
-  margin: 0 auto 1.5rem;
+  max-width: 1200px;
+  margin: 0 0 1.5rem 0;
 }
 
 .skills-grid {
@@ -418,8 +417,19 @@
   }
   
   .hero-section {
-    min-height: 90vh;
-    padding: 6rem 1.5rem 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem 2rem;
+    min-height: auto;
+  }
+  
+  .schedule-meeting-btn {
+    margin-top: 1.5rem;
+    order: 2;
+  }
+  
+  .hero-content {
+    order: 1;
   }
   
   .name {
@@ -465,6 +475,10 @@
   .skills-section,
   .contact-section {
     padding: 3rem 1.5rem;
+  }
+  
+  .about-section {
+    padding-left: 1.5rem;
   }
   
   .github-stats-grid {
