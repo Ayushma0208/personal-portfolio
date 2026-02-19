@@ -31,7 +31,8 @@ const HomePage = () => {
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="name">Ayushma Tripathi</h1>
-          <p className="tagline">Software Engineer — I build backend systems, real-time apps, and RESTful APIs.</p>
+          <h2 className="tagline">Software Engineer</h2>
+          <p className="tagline">I build backend systems, real-time apps, and RESTful APIs.</p>
 
           <div className="social-icons">
             <a href="https://github.com/Ayushma0208" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
@@ -67,7 +68,7 @@ const HomePage = () => {
           Beyond the basics, I've implemented reverse proxies with NGINX, designed fault-tolerant service meshes, and built modular microservices that communicate over protocol buffers. I'm comfortable with concepts like CAP theorem, distributed tracing, rate-limiting, horizontal scaling, idempotency, circuit breakers, and eventual consistency.
         </p>
         <p className="about-text">
-          Every service I write is built with observability in mind — logs, metrics, alerts, and structured tracing included from day one.
+          Every service I write is built with observability in mind logs, metrics, alerts, and structured tracing included from day one.
         </p>
       </section>
 
