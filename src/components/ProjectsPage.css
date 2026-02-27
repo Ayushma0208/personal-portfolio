@@ -47,24 +47,41 @@
   overflow: hidden;
 }
 
-.project-card.expanded {
-  grid-column: 1 / -1;
-  max-width: 100%;
-}
-
-.project-details {
-  margin: 2rem 0;
+/* Modal Overlay Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 15px;
-  border-left: 4px solid #667eea;
-  animation: slideDown 0.3s ease-out;
+  animation: fadeIn 0.3s ease-out;
+  overflow-y: auto;
 }
 
-@keyframes slideDown {
+.modal-content {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 20px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(50px);
   }
   to {
     opacity: 1;
@@ -72,61 +89,132 @@
   }
 }
 
-.detail-section {
-  margin-bottom: 2rem;
+.modal-project-details {
+  padding: 3rem;
 }
 
-.detail-section:last-child {
-  margin-bottom: 0;
+.modal-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+  padding-bottom: 1rem;
 }
 
-.detail-section h4 {
-  font-size: 1.5rem;
+.modal-description {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #d0d0d0;
+  margin-bottom: 2.5rem;
+}
+
+.modal-section {
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: 1.6rem;
   color: #667eea;
   margin-bottom: 1rem;
   font-weight: 600;
+  position: relative;
+  padding-left: 1rem;
 }
 
-.architecture-intro {
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.section-intro {
   color: #c0c0c0;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-.detail-section ul {
+.section-list {
   list-style: none;
   padding: 0;
-  margin-left: 1rem;
+  margin: 0;
 }
 
-.detail-section li {
+.section-list li {
   color: #d0d0d0;
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.8;
-  margin-bottom: 0.8rem;
-  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
   position: relative;
 }
 
-.detail-section li::before {
+.section-list li::before {
   content: "•";
   position: absolute;
-  left: 0;
+  left: 0.5rem;
   color: #667eea;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
-.detail-label {
+.modal-info {
+  color: #c0c0c0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.info-label {
   color: #667eea;
   font-weight: 600;
 }
 
-.detail-section p {
-  color: #c0c0c0;
-  font-size: 1rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
+.modal-close-btn {
+  margin-top: 2rem;
+  padding: 1rem 2.5rem;
+  background: rgba(102, 126, 234, 0.2);
+  border: 2px solid #667eea;
+  border-radius: 10px;
+  color: #667eea;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+}
+
+.modal-close-btn:hover {
+  background: rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Custom scrollbar for modal */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.5);
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.7);
 }
 
 .project-actions {
@@ -249,14 +337,6 @@
     padding: 2rem;
   }
   
-  .project-details {
-    padding: 1.5rem;
-  }
-  
-  .detail-section h4 {
-    font-size: 1.3rem;
-  }
-  
   .project-actions {
     flex-direction: column;
     align-items: stretch;
@@ -267,5 +347,37 @@
     width: 100%;
     text-align: center;
     justify-content: center;
+  }
+
+  /* Modal responsive styles */
+  .modal-overlay {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+  }
+
+  .modal-project-details {
+    padding: 2rem 1.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-description,
+  .section-intro,
+  .section-list li,
+  .modal-info {
+    font-size: 1rem;
+  }
+
+  .section-list li {
+    padding-left: 1.5rem;
   }
 }

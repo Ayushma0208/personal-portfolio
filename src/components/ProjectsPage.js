@@ -12,11 +12,27 @@ const ProjectsPage = () => {
       technologies: ["Node.js", "Express.js", "MongoDB", "RESTful APIs"],
       link: "https://www.rentgrids.com/",
       details: {
+        architectureIntro: "Backend architecture highlights:",
         architecture: [
           "Built scalable backend services with Node.js and Express.js",
           "Implemented efficient search algorithms with MongoDB aggregation",
           "Optimized database queries for performance at scale",
           "RESTful API design with proper error handling and validation"
+        ],
+        scalability: [
+          "Horizontal scaling with load balancing",
+          "Database indexing for optimized query performance",
+          "Caching layer for frequently accessed data"
+        ],
+        resilience: [
+          "Error handling and validation middleware",
+          "Database connection pooling",
+          "Graceful error responses"
+        ],
+        reliability: [
+          "Consistent API responses",
+          "Data validation and sanitization",
+          "Logging and monitoring"
         ],
         techStack: "Node.js, Express, MongoDB, JWT, RESTful APIs, Redis, Docker",
         features: "Property search & filtering, location-based search, budget optimization, amenity matching, user authentication",
@@ -30,11 +46,25 @@ const ProjectsPage = () => {
       technologies: ["TypeScript", "Node.js", "Kafka", "MongoDB", "Redis", "WebSocket"],
       link: "#",
       details: {
+        architectureIntro: "Built with TypeScript and Node.js, using stateless, containerized microservices connected via:",
         architecture: [
           "Kafka-based message queues and gRPC for service communication",
           "MongoDB as operational datastore for schema flexibility and write throughput",
           "Redis for caching, pub/sub messaging, and ephemeral state (e.g. driver locations)",
-          "WebSocket layer for real-time client updates like driver pings and ETAs",
+          "WebSocket layer for real-time client updates like driver pings and ETAs"
+        ],
+        scalability: [
+          "Horizontal scaling of stateless microservices",
+          "Kafka partitioning for distributed event processing",
+          "Redis clustering for high-throughput caching",
+          "MongoDB sharding for write-heavy workloads"
+        ],
+        resilience: [
+          "Circuit breakers and retry logic in service-to-service calls",
+          "Kafka consumer groups for fault-tolerant message processing",
+          "Health checks and auto-restart policies in Docker"
+        ],
+        reliability: [
           "Eventual consistency in the dispatch layer",
           "Clean separation of control and data planes",
           "Minimal latency and maximum uptime"
@@ -51,13 +81,29 @@ const ProjectsPage = () => {
       technologies: ["Node.js", "WebSocket", "Redis", "MongoDB", "Kafka"],
       link: "#",
       details: {
+        architectureIntro: "Built with distributed architecture focusing on:",
         architecture: [
           "Distributed microservices architecture for horizontal scalability",
           "WebSocket connections for real-time bidirectional communication",
           "Redis pub/sub for message routing and delivery",
           "MongoDB for persistent message storage",
-          "Kafka for event streaming and message queuing",
-          "Load balancing for optimal server distribution"
+          "Kafka for event streaming and message queuing"
+        ],
+        scalability: [
+          "Microservices that scale independently based on load",
+          "Redis clustering for distributed message routing",
+          "MongoDB sharding for handling billions of messages",
+          "Load balancing across WebSocket servers"
+        ],
+        resilience: [
+          "Message queue persistence with Kafka",
+          "WebSocket reconnection with exponential backoff",
+          "Redundant message storage"
+        ],
+        reliability: [
+          "Cross-device message synchronization",
+          "Delivery acknowledgments and read receipts",
+          "Message ordering guarantees"
         ],
         techStack: "Node.js, Express, WebSocket, Redis, MongoDB, Kafka, JWT, Docker, Kubernetes",
         features: "Real-time messaging, cross-device sync, group chats, message status tracking, typing indicators",
@@ -77,33 +123,9 @@ const ProjectsPage = () => {
       
       <div className="projects-grid">
         {projects.map(project => (
-          <div key={project.id} className={`project-card ${expandedProject === project.id ? 'expanded' : ''}`}>
+          <div key={project.id} className="project-card">
             <h3 className="project-title">{project.title}</h3>
             <p className="project-description">{project.description}</p>
-            
-            {expandedProject === project.id && project.details && (
-              <div className="project-details">
-                <div className="detail-section">
-                  <h4>Architecture</h4>
-                  <p className="architecture-intro">
-                    {project.title.includes("UpRides") && "Built with TypeScript and Node.js, using stateless, containerized microservices connected via:"}
-                    {project.title.includes("Dirext") && "Built with distributed architecture focusing on:"}
-                    {project.title.includes("RentGrids") && "Backend architecture highlights:"}
-                  </p>
-                  <ul>
-                    {project.details.architecture.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="detail-section">
-                  <p><strong className="detail-label">Tech Stack:</strong> {project.details.techStack}</p>
-                  <p><strong className="detail-label">Features:</strong> {project.details.features}</p>
-                  <p><strong className="detail-label">Goal:</strong> {project.details.goal}</p>
-                </div>
-              </div>
-            )}
             
             <div className="project-technologies">
               {project.technologies.map((tech, index) => (
@@ -116,7 +138,7 @@ const ProjectsPage = () => {
                 onClick={() => toggleExpand(project.id)} 
                 className="read-more-btn"
               >
-                {expandedProject === project.id ? 'Read Less' : 'Read More'}
+                Read More
               </button>
               {project.link !== "#" && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
@@ -127,6 +149,69 @@ const ProjectsPage = () => {
           </div>
         ))}
       </div>
+
+      {expandedProject !== null && (
+        <div className="modal-overlay" onClick={() => setExpandedProject(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            {projects.filter(p => p.id === expandedProject).map(project => (
+              <div key={project.id} className="modal-project-details">
+                <h2 className="modal-title">{project.title}</h2>
+                <p className="modal-description">{project.description}</p>
+
+                <div className="modal-section">
+                  <h3 className="section-title">Architecture</h3>
+                  <p className="section-intro">{project.details.architectureIntro}</p>
+                  <ul className="section-list">
+                    {project.details.architecture.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="modal-section">
+                  <h3 className="section-title">Scalability</h3>
+                  <ul className="section-list">
+                    {project.details.scalability.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="modal-section">
+                  <h3 className="section-title">Resilience</h3>
+                  <ul className="section-list">
+                    {project.details.resilience.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="modal-section">
+                  <h3 className="section-title">Reliability</h3>
+                  <ul className="section-list">
+                    {project.details.reliability.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="modal-section">
+                  <p className="modal-info"><strong className="info-label">Tech Stack:</strong> {project.details.techStack}</p>
+                  <p className="modal-info"><strong className="info-label">Features:</strong> {project.details.features}</p>
+                  <p className="modal-info"><strong className="info-label">Goal:</strong> {project.details.goal}</p>
+                </div>
+
+                <button 
+                  onClick={() => setExpandedProject(null)} 
+                  className="modal-close-btn"
+                >
+                  Read Less
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
