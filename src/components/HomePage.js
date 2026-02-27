@@ -32,7 +32,7 @@ const HomePage = () => {
         <div className="hero-content">
           <h1 className="name">Ayushma Tripathi</h1>
           <h2 className="tagline">Software Engineer</h2>
-          <p className="tagline">I build backend systems, real-time apps, and RESTful APIs.</p>
+          <p className="tagline">I design and build distributed backend systems that scale reliably under real-world load.</p>
 
           <div className="social-icons">
             <a href="https://github.com/Ayushma0208" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
