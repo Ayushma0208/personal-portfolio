@@ -7,7 +7,7 @@ const ProjectsPage = () => {
   const projects = [
     {
       id: 1,
-      title: "RentGrids — Property Rental Platform",
+      title: "RentGrids - Property Rental Platform",
       description: "A backend-driven property rental platform that allows users to search, filter, and manage rental properties based on location, budget, and amenities. The platform focuses on efficient property discovery, optimized search performance, and scalable API architecture.",
       technologies: ["Node.js", "Express.js", "MongoDB", "RESTful APIs"],
       link: "https://www.rentgrids.com/",
@@ -41,7 +41,7 @@ const ProjectsPage = () => {
     },
     {
       id: 2,
-      title: "UpRides — Real-Time Ride-Hailing Backend at Scale",
+      title: "UpRides - Real-Time Ride-Hailing Backend at Scale",
       description: "A fully decoupled, event-driven backend inspired by ride-hailing giants like Uber and Lyft. The system prioritizes scalability, resilience, and real-time performance.",
       technologies: ["TypeScript", "Node.js", "Kafka", "MongoDB", "Redis", "WebSocket"],
       link: "#",
@@ -76,7 +76,7 @@ const ProjectsPage = () => {
     },
     {
       id: 3,
-      title: "Med-Minutes — Real-Time Healthcare Appointment System",
+      title: "Med-Minutes - Real-Time Healthcare Appointment System",
       description: "A distributed messaging platform inspired by Facebook Messenger and WhatsApp, designed to handle billions of users sending millions of messages daily. The system prioritizes real-time message delivery, cross-device synchronization, and efficient message routing with minimal client connections.",
       technologies: ["Node.js", "WebSocket", "Redis", "MongoDB", "Kafka"],
       link: "#",
@@ -108,6 +108,47 @@ const ProjectsPage = () => {
         techStack: "Node.js, Express, WebSocket, Redis, MongoDB, Kafka, JWT, Docker, Kubernetes",
         features: "Real-time messaging, cross-device sync, group chats, message status tracking, typing indicators",
         goal: "Build a messaging platform handling billions of users at scale"
+      }
+    },
+    {
+      id: 4,
+      title: "EventHub - Scalable Event Booking Platform",
+      description: "A cloud-native event booking system built on AWS infrastructure, enabling users to discover, book, and manage event tickets seamlessly. The platform leverages containerization with Docker, automated CI/CD pipelines, and PostgreSQL for transactional data integrity.",
+      technologies: ["Node.js", "Express.js", "PostgreSQL", "Docker", "AWS", "CI/CD"],
+      link: "#",
+      details: {
+        architectureIntro: "Cloud-native architecture deployed on AWS with automated DevOps practices:",
+        architecture: [
+          "Containerized Node.js/Express.js microservices with Docker",
+          "PostgreSQL for ACID-compliant transactional operations",
+          "AWS ECS/EKS for container orchestration and auto-scaling",
+          "AWS RDS for managed PostgreSQL with multi-AZ deployment",
+          "AWS S3 for event media storage and CloudFront for CDN"
+        ],
+        scalability: [
+          "Horizontal scaling with AWS Auto Scaling Groups",
+          "Elastic Load Balancing for traffic distribution",
+          "PostgreSQL read replicas for query performance",
+          "Redis caching layer with AWS ElastiCache",
+          "Serverless functions (AWS Lambda) for background tasks"
+        ],
+        resilience: [
+          "Multi-AZ RDS deployment for database high availability",
+          "Automated backups and point-in-time recovery",
+          "Health checks and automatic container restarts",
+          "Circuit breakers for dependent service failures",
+          "AWS CloudWatch monitoring and alerting"
+        ],
+        reliability: [
+          "CI/CD pipeline with GitHub Actions for automated testing and deployment",
+          "Blue-green deployments for zero-downtime releases",
+          "Database migrations with version control",
+          "Comprehensive logging with AWS CloudWatch Logs",
+          "Infrastructure as Code with AWS CloudFormation/Terraform"
+        ],
+        techStack: "Node.js, Express.js, PostgreSQL, Docker, AWS (ECS, RDS, S3, CloudFront, Lambda), GitHub Actions, Redis, JWT, Nginx",
+        features: "Event discovery & search, secure ticket booking, payment processing, QR code generation, user authentication, email notifications",
+        goal: "Build a production-ready event booking platform with DevOps best practices"
       }
     }
   ];
@@ -200,6 +241,12 @@ const ProjectsPage = () => {
                   <p className="modal-info"><strong className="info-label">Features:</strong> {project.details.features}</p>
                   <p className="modal-info"><strong className="info-label">Goal:</strong> {project.details.goal}</p>
                 </div>
+
+                {project.link !== "#" && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="modal-project-link">
+                    View Project →
+                  </a>
+                )}
 
                 <button 
                   onClick={() => setExpandedProject(null)} 
