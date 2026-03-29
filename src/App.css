@@ -13,12 +13,17 @@
 nav {
   background: rgba(15, 15, 30, 0.95);
   backdrop-filter: blur(10px);
-  padding: 1.5rem 2rem;
+  padding: 0.85rem 1.5rem;
   position: sticky;
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(102, 126, 234, 0.2);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: padding 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+nav.scrolled {
+  padding: 0.55rem 1.25rem;
 }
 
 .nav-inner {
@@ -33,14 +38,26 @@ nav {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
+  padding: 0;
+  border-radius: 0;
+  transition: transform 0.25s ease;
+}
+
+nav.scrolled .brand-logo-link {
+  transform: translateY(-8px);
 }
 
 .brand-logo {
-  width: 250px;
+  width: 180px;
   height: auto;
   display: block;
   mix-blend-mode: screen;
   filter: contrast(1.25) brightness(1.2);
+  transition: width 0.25s ease;
+}
+
+nav.scrolled .brand-logo {
+  width: 155px;
 }
 
 nav ul {
@@ -56,19 +73,19 @@ nav li {
   position: relative;
 }
 
-nav a {
+nav ul a {
   text-decoration: none;
   color: #e0e0e0;
-  font-size: 1.2rem;
+  font-size: 1.08rem;
   font-weight: 600;
-  padding: 0.5rem 1.5rem;
+  padding: 0.35rem 1rem;
   border-radius: 8px;
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
 }
 
-nav a::after {
+nav ul a::after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -81,16 +98,16 @@ nav a::after {
   transition: transform 0.3s ease;
 }
 
-nav a:hover {
+nav ul a:hover {
   color: #ffffff;
   background: rgba(102, 126, 234, 0.1);
 }
 
-nav a:hover::after {
+nav ul a:hover::after {
   transform: translateX(-50%) scaleX(1);
 }
 
-nav a.active {
+nav ul a.active {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
@@ -121,7 +138,11 @@ html {
 
 @media (max-width: 768px) {
   nav {
-    padding: 1rem;
+    padding: 0.8rem 0.9rem;
+  }
+
+  nav.scrolled {
+    padding: 0.55rem 0.9rem;
   }
 
   .nav-inner {
@@ -129,7 +150,15 @@ html {
   }
 
   .brand-logo {
-    width: 72px;
+    width: 64px;
+  }
+
+  nav.scrolled .brand-logo {
+    width: 58px;
+  }
+
+  nav.scrolled .brand-logo-link {
+    transform: translateY(-4px);
   }
   
   nav ul {
@@ -137,9 +166,9 @@ html {
     justify-content: flex-end;
   }
   
-  nav a {
+  nav ul a {
     font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.35rem 0.7rem;
   }
 }
 

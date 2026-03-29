@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import ProjectsPage from './components/ProjectsPage';
@@ -7,10 +7,23 @@ import BlogPostDetail from './components/BlogPostDetail';
 import './App.css';
 
 function App() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <Router>
       <div className="App">
-        <nav>
+        <nav className={isScrolled ? 'scrolled' : ''}>
           <div className="nav-inner">
             <Link to="/" className="brand-logo-link" aria-label="Home">
               <img src="/initiallogo.jpeg" alt="Initials logo" className="brand-logo" />
