@@ -21,12 +21,35 @@ nav {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 250px;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+  filter: contrast(1.25) brightness(1.2);
+}
+
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
+  flex: 1;
 }
 
 nav li {
@@ -99,6 +122,14 @@ html {
 @media (max-width: 768px) {
   nav {
     padding: 1rem;
+  }
+
+  .nav-inner {
+    gap: 0.8rem;
+  }
+
+  .brand-logo {
+    width: 72px;
   }
   
   nav ul {

@@ -11,17 +11,22 @@ function App() {
     <Router>
       <div className="App">
         <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/projects">Projects</Link>
-            </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-          </ul>
+          <div className="nav-inner">
+            <Link to="/" className="brand-logo-link" aria-label="Home">
+              <img src="/initiallogo.jpeg" alt="Initials logo" className="brand-logo" />
+            </Link>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/projects">Projects</Link>
+              </li>
+              <li>
+                <Link to="/blog">Blog</Link>
+              </li>
+            </ul>
+          </div>
         </nav>
         <Routes>
           <Route path="/" element={<HomePage />} />
