@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 import './HomePage.css';
 
-const HomePage = () => {
+const HomePage = ({ theme = 'dark' }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
+
+  const statsTheme = theme === 'dark' ? 'tokyonight' : 'default';
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -78,7 +80,7 @@ const HomePage = () => {
         <div className="github-stats-grid">
           <div className="github-stat-card">
             <img
-  src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Ayushma0208&layout=compact&theme=tokyonight"
+  src={`https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Ayushma0208&layout=compact&theme=${statsTheme}`}
   alt="Top Languages"
 />
 
@@ -86,7 +88,7 @@ const HomePage = () => {
           
           <div className="github-stat-card">
             <img 
-              src="https://github-readme-streak-stats.herokuapp.com/?user=Ayushma0208&theme=tokyonight&hide_border=true&background=1a1a2e&ring=667eea&fire=764ba2&currStreakLabel=667eea" 
+              src={`https://github-readme-streak-stats.herokuapp.com/?user=Ayushma0208&theme=${statsTheme}${theme === 'dark' ? '&hide_border=true&background=1a1a2e&ring=667eea&fire=764ba2&currStreakLabel=667eea' : ''}`}
               alt="GitHub Streak"
               loading="lazy"
             />
@@ -96,7 +98,7 @@ const HomePage = () => {
         <div className="github-stats-grid">
           <div className="github-stat-card">
            <img
-  src="https://github-readme-stats-sigma-five.vercel.app/api?username=Ayushma0208&show_icons=true&theme=tokyonight"
+  src={`https://github-readme-stats-sigma-five.vercel.app/api?username=Ayushma0208&show_icons=true&theme=${statsTheme}`}
   alt="GitHub Stats"
 />
 
@@ -107,12 +109,13 @@ const HomePage = () => {
         <div className="github-calendar-container">
           <GitHubCalendar 
             username="Ayushma0208"
-            colorScheme="dark"
+            colorScheme={theme}
             blockSize={12}
             blockMargin={5}
             fontSize={14}
             theme={{
-              dark: ['#1a1a2e', '#667eea20', '#667eea40', '#667eea80', '#667eea']
+              dark: ['#1a1a2e', '#667eea20', '#667eea40', '#667eea80', '#667eea'],
+              light: ['#eef2ff', '#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1']
             }}
           />
         </div>

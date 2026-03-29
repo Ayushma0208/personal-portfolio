@@ -8,6 +8,7 @@ import './App.css';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,15 @@ function App() {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <Router>
@@ -39,10 +49,18 @@ function App() {
                 <Link to="/blog">Blog</Link>
               </li>
             </ul>
+            <button
+              type="button"
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? '☀ Light Mode' : '🌙 Dark Mode'}
+            </button>
           </div>
         </nav>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage theme={theme} />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/blog/:id" element={<BlogPostDetail />} />
           <Route path="/blog" element={<BlogPage />} />
