@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import ProjectsPage from './components/ProjectsPage';
-import BlogPage from './components/BlogPage';
-import BlogPostDetail from './components/BlogPostDetail';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import ProjectsPage from "./components/ProjectsPage";
+import BlogPage from "./components/BlogPage";
+import BlogPostDetail from "./components/BlogPostDetail";
+import "./App.css";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "dark",
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,27 +18,31 @@ function App() {
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
 
   return (
     <Router>
       <div className="App">
-        <nav className={isScrolled ? 'scrolled' : ''}>
+        <nav className={isScrolled ? "scrolled" : ""}>
           <div className="nav-inner">
             <Link to="/" className="brand-logo-link" aria-label="Home">
-              <img src="/initiallogo.jpeg" alt="Initials logo" className="brand-logo" />
+              <img
+                src="/initial.png"
+                alt="Initials logo"
+                className="brand-logo"
+              />
             </Link>
             <ul>
               <li>
@@ -53,9 +59,9 @@ function App() {
               type="button"
               className="theme-toggle-btn"
               onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
-              {theme === 'dark' ? '☀ Light Mode' : '🌙 Dark Mode'}
+              {theme === "dark" ? "☀ Light Mode" : "🌙 Dark Mode"}
             </button>
           </div>
         </nav>

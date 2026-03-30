@@ -16,7 +16,7 @@
   --scrollbar-track: #0f0f1e;
 }
 
-body[data-theme='light'] {
+body[data-theme="light"] {
   --app-bg: #ffffff;
   --app-text: #121826;
   --nav-bg: rgba(255, 255, 255, 0.96);
@@ -32,8 +32,10 @@ body[data-theme='light'] {
   min-height: 100vh;
   background: var(--app-bg);
   color: var(--app-text);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background 0.3s ease, color 0.3s ease;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 nav {
@@ -45,7 +47,9 @@ nav {
   z-index: 1000;
   border-bottom: 1px solid var(--nav-border);
   box-shadow: var(--nav-shadow);
-  transition: padding 0.25s ease, backdrop-filter 0.25s ease;
+  transition:
+    padding 0.25s ease,
+    backdrop-filter 0.25s ease;
 }
 
 nav.scrolled {
@@ -77,21 +81,15 @@ nav.scrolled .brand-logo-link {
   width: 180px;
   height: auto;
   display: block;
-  mix-blend-mode: screen;
-  filter: contrast(1.25) brightness(1.2);
   transition: width 0.25s ease;
 }
 
-body[data-theme='light'] .brand-logo-link {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  padding: 0.3rem 0.55rem;
-  border-radius: 10px;
-  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.22);
+body[data-theme="light"] .brand-logo {
+  filter: invert(1) contrast(1.2) brightness(0.9);
 }
 
-body[data-theme='light'] .brand-logo {
-  mix-blend-mode: normal;
-  filter: contrast(1.3) brightness(1.15);
+body[data-theme="dark"] .brand-logo {
+  filter: brightness(0.78) contrast(1.1);
 }
 
 nav.scrolled .brand-logo {
@@ -124,7 +122,7 @@ nav ul a {
 }
 
 nav ul a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 50%;
@@ -161,7 +159,10 @@ nav ul a.active {
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .theme-toggle-btn:hover {
@@ -170,7 +171,7 @@ nav ul a.active {
   box-shadow: 0 8px 18px rgba(59, 130, 246, 0.25);
 }
 
-body[data-theme='light'] .theme-toggle-btn {
+body[data-theme="light"] .theme-toggle-btn {
   background: rgba(15, 23, 42, 0.05);
 }
 
@@ -197,101 +198,105 @@ html {
   background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
-body[data-theme='light'] .home-container,
-body[data-theme='light'] .projects-container,
-body[data-theme='light'] .blog-container,
-body[data-theme='light'] .blog-post-detail-container {
+body[data-theme="light"] .home-container,
+body[data-theme="light"] .projects-container,
+body[data-theme="light"] .blog-container,
+body[data-theme="light"] .blog-post-detail-container {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   color: #1e293b;
 }
 
-body[data-theme='light'] .time-location {
+body[data-theme="light"] .time-location {
   color: #475569;
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
-body[data-theme='light'] .hero-section {
-  background: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.12) 0%, transparent 55%);
+body[data-theme="light"] .hero-section {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(79, 70, 229, 0.12) 0%,
+    transparent 55%
+  );
 }
 
-body[data-theme='light'] .name,
-body[data-theme='light'] .project-title,
-body[data-theme='light'] .post-title,
-body[data-theme='light'] .post-detail-title,
-body[data-theme='light'] .post-detail-content h2,
-body[data-theme='light'] .post-detail-content strong {
+body[data-theme="light"] .name,
+body[data-theme="light"] .project-title,
+body[data-theme="light"] .post-title,
+body[data-theme="light"] .post-detail-title,
+body[data-theme="light"] .post-detail-content h2,
+body[data-theme="light"] .post-detail-content strong {
   color: #0f172a;
 }
 
-body[data-theme='light'] .tagline,
-body[data-theme='light'] .projects-subtitle,
-body[data-theme='light'] .blog-subtitle,
-body[data-theme='light'] .project-description,
-body[data-theme='light'] .post-content,
-body[data-theme='light'] .post-excerpt,
-body[data-theme='light'] .post-detail-content,
-body[data-theme='light'] .post-detail-content p,
-body[data-theme='light'] .post-detail-content li,
-body[data-theme='light'] .about-text,
-body[data-theme='light'] .contact-email,
-body[data-theme='light'] .modal-description,
-body[data-theme='light'] .modal-info,
-body[data-theme='light'] .section-intro,
-body[data-theme='light'] .section-list li,
-body[data-theme='light'] .skill-card li {
+body[data-theme="light"] .tagline,
+body[data-theme="light"] .projects-subtitle,
+body[data-theme="light"] .blog-subtitle,
+body[data-theme="light"] .project-description,
+body[data-theme="light"] .post-content,
+body[data-theme="light"] .post-excerpt,
+body[data-theme="light"] .post-detail-content,
+body[data-theme="light"] .post-detail-content p,
+body[data-theme="light"] .post-detail-content li,
+body[data-theme="light"] .about-text,
+body[data-theme="light"] .contact-email,
+body[data-theme="light"] .modal-description,
+body[data-theme="light"] .modal-info,
+body[data-theme="light"] .section-intro,
+body[data-theme="light"] .section-list li,
+body[data-theme="light"] .skill-card li {
   color: #334155;
 }
 
-body[data-theme='light'] .about-section,
-body[data-theme='light'] .github-section,
-body[data-theme='light'] .skills-section,
-body[data-theme='light'] .contact-section {
+body[data-theme="light"] .about-section,
+body[data-theme="light"] .github-section,
+body[data-theme="light"] .skills-section,
+body[data-theme="light"] .contact-section {
   border-color: rgba(148, 163, 184, 0.28);
 }
 
-body[data-theme='light'] .about-section,
-body[data-theme='light'] .github-section,
-body[data-theme='light'] .blog-post-card,
-body[data-theme='light'] .blog-post-detail,
-body[data-theme='light'] .project-card,
-body[data-theme='light'] .skill-card,
-body[data-theme='light'] .github-stat-card,
-body[data-theme='light'] .github-calendar-container,
-body[data-theme='light'] .modal-content {
+body[data-theme="light"] .about-section,
+body[data-theme="light"] .github-section,
+body[data-theme="light"] .blog-post-card,
+body[data-theme="light"] .blog-post-detail,
+body[data-theme="light"] .project-card,
+body[data-theme="light"] .skill-card,
+body[data-theme="light"] .github-stat-card,
+body[data-theme="light"] .github-calendar-container,
+body[data-theme="light"] .modal-content {
   background: #ffffff;
   border-color: rgba(148, 163, 184, 0.35);
   box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
 }
 
-body[data-theme='light'] .social-icon {
+body[data-theme="light"] .social-icon {
   background: rgba(15, 23, 42, 0.04);
   color: #334155;
   border-color: rgba(148, 163, 184, 0.35);
 }
 
-body[data-theme='light'] .modal-overlay {
+body[data-theme="light"] .modal-overlay {
   background: rgba(15, 23, 42, 0.45);
 }
 
-body[data-theme='light'] .modal-close {
+body[data-theme="light"] .modal-close {
   background: rgba(15, 23, 42, 0.7);
 }
 
-body[data-theme='light'] .modal-content::-webkit-scrollbar-track {
+body[data-theme="light"] .modal-content::-webkit-scrollbar-track {
   background: rgba(15, 23, 42, 0.08);
 }
 
-body[data-theme='light'] .post-meta,
-body[data-theme='light'] .post-detail-meta {
+body[data-theme="light"] .post-meta,
+body[data-theme="light"] .post-detail-meta {
   color: #64748b;
 }
 
-body[data-theme='light'] .post-detail-content em {
+body[data-theme="light"] .post-detail-content em {
   color: #64748b;
 }
 
-body[data-theme='light'] .post-detail-content pre {
+body[data-theme="light"] .post-detail-content pre {
   background: #0f172a;
   border-color: rgba(99, 102, 241, 0.4);
 }
@@ -320,7 +325,7 @@ body[data-theme='light'] .post-detail-content pre {
   nav.scrolled .brand-logo-link {
     transform: translateY(-4px);
   }
-  
+
   nav ul {
     gap: 0.8rem;
     justify-content: flex-end;
@@ -332,10 +337,9 @@ body[data-theme='light'] .post-detail-content pre {
     padding: 0.45rem 0.8rem;
     font-size: 0.82rem;
   }
-  
+
   nav ul a {
     font-size: 0.9rem;
     padding: 0.35rem 0.7rem;
   }
 }
-
