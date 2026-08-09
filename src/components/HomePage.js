@@ -80,15 +80,15 @@ const HomePage = ({ theme = 'dark' }) => {
         <div className="github-stats-grid">
           <div className="github-stat-card">
             <img
-  src={`https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Ayushma0208&layout=compact&theme=${statsTheme}`}
-  alt="Top Languages"
-/>
-
+              src={`https://github-readme-stats.shion.dev/api/top-langs/?username=Ayushma0208&layout=compact&theme=${statsTheme}`}
+              alt="Top Languages"
+              loading="lazy"
+            />
           </div>
           
           <div className="github-stat-card">
             <img 
-              src={`https://github-readme-streak-stats.herokuapp.com/?user=Ayushma0208&theme=${statsTheme}${theme === 'dark' ? '&hide_border=true&background=1a1a2e&ring=667eea&fire=764ba2&currStreakLabel=667eea' : ''}`}
+              src={`https://streak-stats.demolab.com/?user=Ayushma0208&theme=${statsTheme}${theme === 'dark' ? '&hide_border=true&background=1a1a2e&ring=667eea&fire=764ba2&currStreakLabel=667eea' : ''}`}
               alt="GitHub Streak"
               loading="lazy"
             />
@@ -97,11 +97,11 @@ const HomePage = ({ theme = 'dark' }) => {
 
         <div className="github-stats-grid">
           <div className="github-stat-card">
-           <img
-  src={`https://github-readme-stats-sigma-five.vercel.app/api?username=Ayushma0208&show_icons=true&theme=${statsTheme}`}
-  alt="GitHub Stats"
-/>
-
+            <img
+              src={`https://github-readme-stats.shion.dev/api?username=Ayushma0208&show_icons=true&theme=${statsTheme}`}
+              alt="GitHub Stats"
+              loading="lazy"
+            />
           </div>
         </div>
 
