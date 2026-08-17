@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
+import GitHubStats from './GitHubStats';
 import './HomePage.css';
 
 const HomePage = ({ theme = 'dark' }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
-
-  const statsTheme = theme === 'dark' ? 'tokyonight' : 'default';
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -76,34 +75,8 @@ const HomePage = ({ theme = 'dark' }) => {
 
       <section className="github-section">
         <h2>GitHub Stats & Activity</h2>
-        
-        <div className="github-stats-grid">
-          <div className="github-stat-card">
-            <img
-              src={`https://github-readme-stats.shion.dev/api/top-langs/?username=Ayushma0208&layout=compact&theme=${statsTheme}`}
-              alt="Top Languages"
-              loading="lazy"
-            />
-          </div>
-          
-          <div className="github-stat-card">
-            <img 
-              src={`https://streak-stats.demolab.com/?user=Ayushma0208&theme=${statsTheme}${theme === 'dark' ? '&hide_border=true&background=1a1a2e&ring=667eea&fire=764ba2&currStreakLabel=667eea' : ''}`}
-              alt="GitHub Streak"
-              loading="lazy"
-            />
-          </div>
-        </div>
 
-        <div className="github-stats-grid">
-          <div className="github-stat-card">
-            <img
-              src={`https://github-readme-stats.shion.dev/api?username=Ayushma0208&show_icons=true&theme=${statsTheme}`}
-              alt="GitHub Stats"
-              loading="lazy"
-            />
-          </div>
-        </div>
+        <GitHubStats />
 
         <h3 className="contribution-title">Contribution Calendar</h3>
         <div className="github-calendar-container">

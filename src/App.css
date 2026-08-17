@@ -261,12 +261,56 @@ body[data-theme="light"] .blog-post-card,
 body[data-theme="light"] .blog-post-detail,
 body[data-theme="light"] .project-card,
 body[data-theme="light"] .skill-card,
-body[data-theme="light"] .github-stat-card,
+body[data-theme="light"] .gh-card,
+body[data-theme="light"] .gh-error,
 body[data-theme="light"] .github-calendar-container,
 body[data-theme="light"] .modal-content {
   background: #ffffff;
   border-color: rgba(148, 163, 184, 0.35);
   box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
+
+body[data-theme="light"] .gh-card-title,
+body[data-theme="light"] .gh-profile-link,
+body[data-theme="light"] .gh-error a {
+  color: #4f46e5;
+}
+
+body[data-theme="light"] .gh-lang-name,
+body[data-theme="light"] .gh-stat-list dd,
+body[data-theme="light"] .gh-streak-meta strong {
+  color: #0f172a;
+}
+
+body[data-theme="light"] .gh-lang-pct,
+body[data-theme="light"] .gh-streak-label,
+body[data-theme="light"] .gh-streak-meta span,
+body[data-theme="light"] .gh-stat-list dt,
+body[data-theme="light"] .gh-empty,
+body[data-theme="light"] .gh-error {
+  color: #64748b;
+}
+
+body[data-theme="light"] .gh-lang-track {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+body[data-theme="light"] .gh-streak-meta div {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+body[data-theme="light"] .gh-stat-list div {
+  border-bottom-color: rgba(148, 163, 184, 0.25);
+}
+
+body[data-theme="light"] .gh-skeleton-lines span {
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.06),
+    rgba(15, 23, 42, 0.12),
+    rgba(15, 23, 42, 0.06)
+  );
+  background-size: 200% 100%;
 }
 
 body[data-theme="light"] .social-icon {

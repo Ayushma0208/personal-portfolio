@@ -243,34 +243,235 @@
 
 .github-stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
-  justify-items: center;
 }
 
-.github-stat-card {
+.gh-stats-native {
+  align-items: stretch;
+}
+
+.gh-card {
   background: rgba(26, 26, 46, 0.5);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  transition: all 0.3s ease;
+  padding: 1.75rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
+  min-height: 240px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
-.github-stat-card:hover {
+.gh-card:hover {
   transform: translateY(-5px);
   border-color: rgba(102, 126, 234, 0.5);
   box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
 }
 
-.github-stat-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+.gh-card-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #a5b4fc;
+}
+
+.gh-lang-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.gh-lang-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.gh-lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.gh-lang-name {
+  color: #e5e7eb;
+  flex: 1;
+}
+
+.gh-lang-pct {
+  color: #9ca3af;
+  font-variant-numeric: tabular-nums;
+}
+
+.gh-lang-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.gh-lang-fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.4s ease;
+}
+
+.gh-card-streak {
+  text-align: center;
+}
+
+.gh-streak-current {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.gh-streak-value {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gh-streak-label {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.gh-streak-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.gh-streak-meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.gh-streak-meta strong {
+  font-size: 1.25rem;
+  color: #e5e7eb;
+}
+
+.gh-streak-meta span {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.gh-stat-list {
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.gh-stat-list div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gh-stat-list dt {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+.gh-stat-list dd {
+  margin: 0;
+  color: #e5e7eb;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.gh-profile-link {
+  margin-top: auto;
+  padding-top: 1rem;
+  color: #a5b4fc;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.gh-profile-link:hover {
+  color: #c7d2fe;
+  text-decoration: underline;
+}
+
+.gh-empty,
+.gh-error {
+  color: #9ca3af;
+  text-align: center;
+}
+
+.gh-error {
+  grid-column: 1 / -1;
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(26, 26, 46, 0.5);
+}
+
+.gh-error a {
+  color: #a5b4fc;
+}
+
+.gh-skeleton-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.gh-skeleton-lines span {
+  display: block;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.06)
+  );
+  background-size: 200% 100%;
+  animation: gh-shimmer 1.4s ease-in-out infinite;
+}
+
+.gh-skeleton-lines span:nth-child(2) {
+  width: 80%;
+}
+
+.gh-skeleton-lines span:nth-child(3) {
+  width: 65%;
+}
+
+@keyframes gh-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .contribution-title {
@@ -487,8 +688,13 @@
     margin-bottom: 2rem;
   }
 
-  .github-stat-card {
-    padding: 1rem;
+  .gh-card {
+    padding: 1.25rem;
+    min-height: 0;
+  }
+
+  .gh-streak-value {
+    font-size: 2.5rem;
   }
 
   .github-calendar-container {
