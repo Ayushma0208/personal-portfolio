@@ -15,42 +15,195 @@ const LANG_COLORS = {
   'C++': '#f34b7d',
 };
 
+const THEMES = {
+  dark: {
+    bg: '#1a1b27',
+    border: 'rgba(255,255,255,0.12)',
+    title: '#70a5fd',
+    text: '#38bdae',
+    muted: '#a9b1d6',
+    icon: '#bf91f3',
+    ring: '#667eea',
+    fire: '#764ba2',
+    track: '#2a2b3d',
+  },
+  light: {
+    bg: '#fffefe',
+    border: '#e4e2e2',
+    title: '#2f80ed',
+    text: '#434d58',
+    muted: '#64748b',
+    icon: '#4c71f2',
+    ring: '#2f80ed',
+    fire: '#fb8c00',
+    track: '#e4e2e2',
+  },
+};
+
 function formatNumber(value) {
   return new Intl.NumberFormat('en-US').format(value ?? 0);
 }
 
-function SkeletonCard({ title }) {
+function formatStreakRange(start, end) {
+  if (!start || !end) return null;
+
+  const startDate = new Date(`${start}T00:00:00`);
+  const endDate = new Date(`${end}T00:00:00`);
+  if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+    return null;
+  }
+
+  const sameYear = startDate.getFullYear() === endDate.getFullYear();
+  const startLabel = startDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    ...(sameYear ? {} : { year: 'numeric' }),
+  });
+  const endLabel = endDate.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  return `${startLabel} - ${endLabel}`;
+}
+
+function TopLanguagesCard({ username, languages, colors }) {
+  const rows = (languages || []).slice(0, 5);
+
   return (
-    <div className="gh-card" aria-hidden="true">
-      <h3 className="gh-card-title">{title}</h3>
-      <div className="gh-skeleton-lines">
-        <span />
-        <span />
-        <span />
-      </div>
-    </div>
+    <article
+      className="github-panel github-panel--langs"
+      style={{ background: colors.bg, borderColor: colors.border }}
+    >
+      <h3 className="github-panel-title" style={{ color: colors.title }}>
+        {username}&apos;s Top Languages
+      </h3>
+      {rows.length === 0 ? (
+        <p className="github-langs-empty" style={{ color: colors.muted }}>
+          No language data yet
+        </p>
+      ) : (
+        <ul className="github-langs-list">
+          {rows.map((lang) => (
+            <li key={lang.name} className="github-lang-row">
+              <div className="github-lang-meta">
+                <span
+                  className="github-lang-dot"
+                  style={{
+                    backgroundColor: LANG_COLORS[lang.name] || colors.icon,
+                  }}
+                />
+                <span style={{ color: colors.muted }}>{lang.name}</span>
+                <strong style={{ color: colors.text }}>{lang.percent}%</strong>
+              </div>
+              <div
+                className="github-lang-track"
+                style={{ backgroundColor: colors.track }}
+              >
+                <div
+                  className="github-lang-fill"
+                  style={{
+                    width: `${lang.percent}%`,
+                    backgroundColor: LANG_COLORS[lang.name] || colors.icon,
+                  }}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </article>
   );
 }
 
-const GitHubStats = () => {
+function StatsCard({ stats, colors }) {
+  const streak = stats.streak || {};
+  const currentRange = formatStreakRange(streak.currentStart, streak.currentEnd);
+  const longestRange = formatStreakRange(streak.longestStart, streak.longestEnd);
+
+  const detailStats = [
+    { label: 'Stars', value: stats.stars },
+    { label: 'Commits', value: stats.yearContributions },
+    { label: 'Repos', value: stats.publicRepos },
+    { label: 'Followers', value: stats.followers },
+    { label: 'Forks', value: stats.forks },
+  ];
+
+  return (
+    <article
+      className="github-panel github-panel--stats"
+      style={{ background: colors.bg, borderColor: colors.border }}
+    >
+      <h3 className="github-panel-title" style={{ color: colors.title }}>
+        {stats.username}&apos;s GitHub Stats
+      </h3>
+
+      <div className="github-combined-streaks">
+        <div className="github-combined-metric">
+          <strong style={{ color: colors.title }}>
+            {formatNumber(stats.yearContributions)}
+          </strong>
+          <span style={{ color: colors.muted }}>Total Contributions</span>
+        </div>
+
+        <div className="github-combined-metric github-combined-metric--current">
+          <div
+            className="github-streak-ring"
+            style={{ borderColor: colors.ring }}
+          >
+            <span className="github-streak-flame" style={{ color: colors.fire }}>
+              ▲
+            </span>
+            <strong style={{ color: colors.title }}>
+              {formatNumber(streak.current || 0)}
+            </strong>
+          </div>
+          <span style={{ color: colors.ring }}>Current Streak</span>
+          {currentRange && (
+            <small style={{ color: colors.muted }}>{currentRange}</small>
+          )}
+        </div>
+
+        <div className="github-combined-metric">
+          <strong style={{ color: colors.title }}>
+            {formatNumber(streak.longest || 0)}
+          </strong>
+          <span style={{ color: colors.muted }}>Longest Streak</span>
+          {longestRange && (
+            <small style={{ color: colors.ring }}>{longestRange}</small>
+          )}
+        </div>
+      </div>
+
+      <ul className="github-combined-details">
+        {detailStats.map((item) => (
+          <li key={item.label}>
+            <span style={{ color: colors.muted }}>{item.label}</span>
+            <strong style={{ color: colors.text }}>
+              {formatNumber(item.value)}
+            </strong>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+const GitHubStats = ({ theme = 'dark' }) => {
   const [stats, setStats] = useState(null);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const colors = THEMES[theme === 'light' ? 'light' : 'dark'];
 
   useEffect(() => {
     let cancelled = false;
 
     loadGitHubStats()
       .then((data) => {
-        if (!cancelled) {
-          setStats(data);
-          setError(null);
-        }
+        if (!cancelled) setStats(data);
       })
-      .catch((err) => {
-        if (!cancelled) {
-          setError(err.message || 'Failed to load GitHub stats');
-        }
+      .catch(() => {
+        if (!cancelled) setStats(null);
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
@@ -63,18 +216,19 @@ const GitHubStats = () => {
 
   if (loading) {
     return (
-      <div className="github-stats-grid gh-stats-native">
-        <SkeletonCard title="Top Languages" />
-        <SkeletonCard title="Contribution Streak" />
-        <SkeletonCard title="GitHub Stats" />
+      <div className="github-stats-layout">
+        <div className="github-stats-grid">
+          <div className="github-stat-card github-stat-card--loading" />
+          <div className="github-stat-card github-stat-card--loading" />
+        </div>
       </div>
     );
   }
 
-  if (error || !stats) {
+  if (!stats) {
     return (
-      <div className="gh-error" role="alert">
-        <p>Couldn&apos;t load live GitHub stats right now.</p>
+      <div className="github-stat-error" role="alert">
+        <p>Couldn&apos;t load GitHub stats right now.</p>
         <a
           href={`https://github.com/${GITHUB_USER}`}
           target="_blank"
@@ -86,95 +240,20 @@ const GitHubStats = () => {
     );
   }
 
-  const maxLangPercent = Math.max(
-    ...stats.languages.map((lang) => lang.percent),
-    1
-  );
-
   return (
-    <div className="github-stats-grid gh-stats-native">
-      <article className="gh-card">
-        <h3 className="gh-card-title">Top Languages</h3>
-        {stats.languages.length === 0 ? (
-          <p className="gh-empty">No public language data yet.</p>
-        ) : (
-          <ul className="gh-lang-list">
-            {stats.languages.map((lang) => (
-              <li key={lang.name} className="gh-lang-row">
-                <div className="gh-lang-meta">
-                  <span
-                    className="gh-lang-dot"
-                    style={{
-                      backgroundColor: LANG_COLORS[lang.name] || '#667eea',
-                    }}
-                  />
-                  <span className="gh-lang-name">{lang.name}</span>
-                  <span className="gh-lang-pct">{lang.percent}%</span>
-                </div>
-                <div className="gh-lang-track" aria-hidden="true">
-                  <div
-                    className="gh-lang-fill"
-                    style={{
-                      width: `${(lang.percent / maxLangPercent) * 100}%`,
-                      backgroundColor: LANG_COLORS[lang.name] || '#667eea',
-                    }}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </article>
-
-      <article className="gh-card gh-card-streak">
-        <h3 className="gh-card-title">Contribution Streak</h3>
-        <div className="gh-streak-current">
-          <span className="gh-streak-value">
-            {formatNumber(stats.streak.current)}
-          </span>
-          <span className="gh-streak-label">Current streak (days)</span>
+    <div className="github-stats-layout">
+      <div className="github-stats-grid">
+        <div className="github-stat-card github-stat-card--langs">
+          <TopLanguagesCard
+            username={stats.username}
+            languages={stats.languages}
+            colors={colors}
+          />
         </div>
-        <div className="gh-streak-meta">
-          <div>
-            <strong>{formatNumber(stats.yearContributions)}</strong>
-            <span>Total contributions</span>
-          </div>
-          <div>
-            <strong>{formatNumber(stats.streak.longest)}</strong>
-            <span>Longest streak</span>
-          </div>
+        <div className="github-stat-card github-stat-card--stats">
+          <StatsCard stats={stats} colors={colors} />
         </div>
-      </article>
-
-      <article className="gh-card">
-        <h3 className="gh-card-title">GitHub Stats</h3>
-        <dl className="gh-stat-list">
-          <div>
-            <dt>Total Stars</dt>
-            <dd>{formatNumber(stats.stars)}</dd>
-          </div>
-          <div>
-            <dt>Public Repos</dt>
-            <dd>{formatNumber(stats.publicRepos)}</dd>
-          </div>
-          <div>
-            <dt>Followers</dt>
-            <dd>{formatNumber(stats.followers)}</dd>
-          </div>
-          <div>
-            <dt>Contributions (year)</dt>
-            <dd>{formatNumber(stats.yearContributions)}</dd>
-          </div>
-        </dl>
-        <a
-          className="gh-profile-link"
-          href={`https://github.com/${stats.username}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @{stats.username}
-        </a>
-      </article>
+      </div>
     </div>
   );
 };

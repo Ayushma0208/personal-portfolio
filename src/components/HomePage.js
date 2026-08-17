@@ -76,7 +76,7 @@ const HomePage = ({ theme = 'dark' }) => {
       <section className="github-section">
         <h2>GitHub Stats & Activity</h2>
 
-        <GitHubStats />
+        <GitHubStats theme={theme} />
 
         <h3 className="contribution-title">Contribution Calendar</h3>
         <div className="github-calendar-container">
