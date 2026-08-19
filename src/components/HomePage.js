@@ -79,7 +79,13 @@ const HomePage = ({ theme = 'dark' }) => {
         <GitHubStats theme={theme} />
 
         <h3 className="contribution-title">Contribution Calendar</h3>
-        <div className="github-calendar-container">
+        <a
+          className="github-calendar-container"
+          href="https://github.com/Ayushma0208"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Ayushma0208's GitHub profile"
+        >
           <GitHubCalendar 
             username="Ayushma0208"
             colorScheme={theme}
@@ -91,7 +97,7 @@ const HomePage = ({ theme = 'dark' }) => {
               light: ['#eef2ff', '#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1']
             }}
           />
-        </div>
+        </a>
       </section>
 
       <section className="skills-section">

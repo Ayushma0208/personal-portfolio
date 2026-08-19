@@ -240,19 +240,33 @@ const GitHubStats = ({ theme = 'dark' }) => {
     );
   }
 
+  const profileUrl = `https://github.com/${stats.username || GITHUB_USER}`;
+
   return (
     <div className="github-stats-layout">
       <div className="github-stats-grid">
-        <div className="github-stat-card github-stat-card--langs">
+        <a
+          className="github-stat-card github-stat-card--langs"
+          href={profileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${stats.username}'s GitHub profile`}
+        >
           <TopLanguagesCard
             username={stats.username}
             languages={stats.languages}
             colors={colors}
           />
-        </div>
-        <div className="github-stat-card github-stat-card--stats">
+        </a>
+        <a
+          className="github-stat-card github-stat-card--stats"
+          href={profileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${stats.username}'s GitHub profile`}
+        >
           <StatsCard stats={stats} colors={colors} />
-        </div>
+        </a>
       </div>
     </div>
   );
